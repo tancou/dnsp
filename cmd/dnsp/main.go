@@ -8,7 +8,7 @@ import (
 	"syscall"
 
 	"github.com/urfave/cli"
-	"github.com/gophergala/dnsp"
+	"github.com/tancou/dnsp"
 )
 
 // DefaultResolve is the default list of nameservers for the `--resolve` flag.
