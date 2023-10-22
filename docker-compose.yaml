@@ -1,0 +1,19 @@
+services:
+  dnsp:
+    image: tancou/dnsp
+    build:
+      dockerfile: Dockerfile
+      context: .
+    environment:
+      DNSP_BIND: "0.0.0.0:53"
+      DNSP_SERVER: "8.8.4.4,8.8.8.8"
+      # DNSP_BLACKLIST: "/blacklist.txt"
+      # DNSP_WHITELIST: "/whitelist.txt"
+      # DNSP_POLL: 1h
+      # DNSP_HTTP: "0.0.0.0:5000"
+    # volumes:
+    #   - ./blacklist.txt:/blacklist.txt
+    #   - ./whitelist.txt:/whitelist.txt
+    ports:
+      - "53:53"
+      # - "5000:5000"
