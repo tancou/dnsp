@@ -15,5 +15,6 @@ services:
     #   - ./blacklist.txt:/blacklist.txt
     #   - ./whitelist.txt:/whitelist.txt
     ports:
-      - "53:53"
+      - "<EXTERNAL-OR-LOCAL-IP>:53:53/udp"
+      - "<EXTERNAL-OR-LOCAL-IP>:53:53/tcp"
       # - "5000:5000"
