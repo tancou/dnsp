@@ -1,9 +1,5 @@
 # `dnsp`: A DNS Proxy
 
-[![Wercker](https://app.wercker.com/status/f42156d5f4e863ebe8cf0c311bd7800a/s/master "wercker status")](https://app.wercker.com/project/bykey/f42156d5f4e863ebe8cf0c311bd7800a)
-[![GoDoc](https://godoc.org/github.com/gophergala/dnsp?status.svg)](https://godoc.org/github.com/gophergala/dnsp)
-[![Coverage](http://gocover.io/_badge/github.com/gophergala/dnsp)](http://gocover.io/github.com/gophergala/dnsp)
-
 > `dnsp` is a lightweight but powerful DNS server. Queries are blocked or
 > resolved based on a blacklist or a whitelist. Wildcard host patterns are
 > supported (e.g. `*.com`) as well as hosted, community-managed hosts files.
@@ -11,10 +7,11 @@
 > memory footprint][1] and simple web interface.
 
 
-### Installation
+### Build
 
 ```sh
-$ go get -u github.com/gophergala/dnsp/...
+$ go mod tidy
+$ CGO_ENABLED=0 go build -buildvcs=false -o dnsp
 ```
 
 ### Example Usage
@@ -45,6 +42,14 @@ EOF
 $ sudo dnsp -r 8.8.8.8 --whitelist=/etc/dnsp.whitelist
 ```
 
+### Docker Compose
+
+You can build and run with the `docker-compose.yml` file
+
+```sh
+docker compose build
+docker compose up -d
+```
 
 ### Advanced Usage
 
@@ -140,6 +145,5 @@ Why, you ask, is a DNS proxy useful?
 ![dnsp](https://cloud.githubusercontent.com/assets/196617/5892473/cc29afe2-a4bf-11e4-9c6a-d1cc5169d62a.png)
 
 
-[1]: https://github.com/gophergala/dnsp/pull/15#issue-55432972
 [hosts-file.net]: http://hosts-file.net
 [AdBlock]: https://getadblock.com
