@@ -19,6 +19,8 @@ type Options struct {
 
 	Whitelist string
 	Blacklist string
+
+	Verbose bool
 }
 
 // validate verifies that the options are correct.

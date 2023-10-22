@@ -1,6 +1,7 @@
 package dnsp
 
 import (
+	"log"
 	"regexp"
 	"sync"
 	"time"
@@ -79,6 +80,12 @@ func NewServer(o Options) (*Server, error) {
 		if r.Question = s.filter(r.Question); len(r.Question) == 0 {
 			w.WriteMsg(r)
 			return
+		}
+
+		if o.Verbose {
+			for _, question := range r.Question {
+				log.Printf("dnsp: Requested : %s", question.Name)
+			}
 		}
 
 		// Proxy Query:

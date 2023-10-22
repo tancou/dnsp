@@ -7,8 +7,8 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/urfave/cli"
 	"github.com/tancou/dnsp"
+	"github.com/urfave/cli"
 )
 
 // DefaultResolve is the default list of nameservers for the `--resolve` flag.
@@ -59,6 +59,11 @@ func main() {
 			Usage:  "start a web-based UI on the given address (host:port, host or port)",
 			EnvVar: "DNSP_HTTP",
 		},
+		cli.BoolFlag{
+			Name:   "verbose, vvv",
+			Usage:  "Log in the console all dns requests. Default false",
+			EnvVar: "DNSP_VERBOSE",
+		},
 	}
 	app.Action = func(c *cli.Context) {
 		resolve := []string{}
@@ -72,6 +77,7 @@ func main() {
 			Poll:      c.Duration("poll"),
 			Whitelist: c.String("whitelist"),
 			Blacklist: c.String("blacklist"),
+			Verbose:   c.Bool("verbose"),
 		}
 		s, err := dnsp.NewServer(*o)
 		if err != nil {
